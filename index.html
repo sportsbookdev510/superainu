@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Artificial Inu ($SAI) — Robinhood</title>
+  <meta name="description" content="AI IS PUMPING. INU IS SUPER. $SAI just invaded Robinhood. APE. SEND. REPEAT.">
+  <meta name="theme-color" content="#e7f5ea">
+  <meta property="og:title" content="Super Artificial Inu ($SAI)">
+  <meta property="og:description" content="AI IS PUMPING. INU IS SUPER. $SAI just invaded Robinhood. APE. SEND. REPEAT.">
+  <meta property="og:image" content="banner.png">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #e7f5ea;
+      --ink: #072616;
+      --green: #00c805;
+      --green-deep: #067a22;
+      --blue: #2f7dff;
+      --muted: #3e5c49;
+      --card: rgba(255, 255, 255, 0.82);
+      --line: rgba(7, 38, 22, 0.12);
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--ink);
+      line-height: 1.55;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(980px 540px at 88% -12%, rgba(0, 200, 5, 0.38), transparent 58%),
+        radial-gradient(760px 480px at -8% 18%, rgba(90, 170, 255, 0.22), transparent 56%),
+        radial-gradient(640px 420px at 50% 110%, rgba(0, 200, 5, 0.18), transparent 50%),
+        linear-gradient(rgba(7, 90, 32, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(7, 90, 32, 0.045) 1px, transparent 1px);
+      background-size: auto, auto, auto, 76px 76px, 76px 76px;
+      background-attachment: fixed;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    ::selection { background: var(--green); color: #04210c; }
+
+    #fx {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .scan {
+      position: fixed;
+      left: 0;
+      right: 0;
+      height: 120px;
+      z-index: 2;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent, rgba(0, 200, 5, 0.16), transparent);
+      animation: scan 10s linear infinite;
+    }
+
+    header, main, footer { position: relative; z-index: 1; }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(231, 245, 234, 0.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      object-fit: cover;
+      box-shadow: 0 0 0 2px var(--green);
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -0.04em;
+      white-space: nowrap;
+    }
+
+    .brand-short { display: none; }
+    .brand-ticker { color: var(--green-deep); margin-left: 6px; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .nav-links a { font-size: 15px; font-weight: 600; }
+    .nav-links a:hover { color: var(--green-deep); }
+
+    .nav-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .nav-toggle span,
+    .nav-toggle span:before,
+    .nav-toggle span:after {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--ink);
+      position: relative;
+      margin: 0 auto;
+      border-radius: 2px;
+    }
+
+    .nav-toggle span:before,
+    .nav-toggle span:after { content: ""; position: absolute; left: 0; }
+    .nav-toggle span:before { top: -6px; }
+    .nav-toggle span:after { top: 6px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 12px 22px;
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: -0.02em;
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn:focus-visible, .copy:focus-visible { outline: 2px solid var(--green-deep); outline-offset: 3px; }
+
+    .btn-buy {
+      background: var(--green);
+      color: #04210c;
+      box-shadow: 0 10px 24px rgba(0, 200, 5, 0.28);
+    }
+
+    .btn-buy:hover { filter: brightness(1.05); }
+    .btn-pulse { animation: cta 2.4s ease-out infinite; }
+
+    .btn-ghost {
+      background: #fff;
+      color: var(--ink);
+      border: 1px solid rgba(7, 38, 22, 0.16);
+    }
+
+    .btn-ghost:hover { border-color: var(--green-deep); color: var(--green-deep); }
+    .candle-icon { display: block; }
+
+    .stage { padding: 22px 0 0; }
+
+    .banner-shell {
+      position: relative;
+      border-radius: 28px;
+      padding: 3px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(7, 70, 28, 0.16);
+    }
+
+    .banner-shell::before {
+      content: "";
+      position: absolute;
+      inset: -70%;
+      background: conic-gradient(from 0deg, #00c805, #e7f5ea 20%, #7eb6ff 46%, #e7f5ea 68%, #ff2d3a 82%, #00c805);
+      animation: spin 9s linear infinite;
+    }
+
+    .banner-frame {
+      position: relative;
+      z-index: 1;
+      border-radius: 25px;
+      overflow: hidden;
+      background: #08301a;
+    }
+
+    .banner-frame img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 1;
+      object-fit: cover;
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+
+    .shine {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 34%, rgba(255, 255, 255, 0.34) 48%, transparent 62%);
+      transform: translateX(-130%);
+      animation: sheen 5.6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .intro { padding: 54px 0 20px; }
+
+    .intro-copy {
+      width: min(860px, 100%);
+      margin: 0 auto;
+      text-align: center;
+      container-type: inline-size;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green-deep);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(0, 200, 5, 0.18);
+      animation: pulse 1.4s ease-in-out infinite;
+    }
+
+    h1 {
+      font-size: clamp(64px, 8vw, 112px);
+      line-height: 0.84;
+      letter-spacing: -0.06em;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    @supports (font-size: 1cqi) {
+      h1 { font-size: 15cqi; }
+    }
+
+    .word {
+      display: block;
+      width: fit-content;
+      margin-inline: auto;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .super-text {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      background: linear-gradient(105deg, #1d6bff 0%, #7eb6ff 18%, #072616 40%, #3c8dff 62%, #9fd4ff 82%, #1d6bff 100%);
+      background-size: 240% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: chrome 3.4s linear infinite, charge 2.8s ease-in-out infinite, arrive 0.7s cubic-bezier(.16, 1, .3, 1) both;
+      filter: drop-shadow(0 8px 16px rgba(47, 125, 255, 0.25));
+    }
+
+    .bolts {
+      position: absolute;
+      left: -12%;
+      top: -46%;
+      width: 124%;
+      height: 190%;
+      pointer-events: none;
+    }
+
+    .powerline, .stream {
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 10px;
+      overflow: visible;
+      pointer-events: none;
+    }
+
+    .powerline path, .stream path {
+      fill: none;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      animation: travel 1.25s linear infinite;
+    }
+
+    .powerline path {
+      stroke: #2f7dff;
+      stroke-dasharray: 16 84;
+      filter: drop-shadow(0 0 4px rgba(47, 125, 255, 0.8));
+    }
+
+    .word-art {
+      font-size: 0.52em;
+      letter-spacing: 0.14em;
+      color: var(--green-deep);
+      text-shadow: 0 0 18px rgba(0, 200, 5, 0.35);
+      animation: arrive 0.8s cubic-bezier(.16, 1, .3, 1) 0.08s both;
+    }
+
+    .art-sizer { visibility: hidden; }
+    .art-live { position: absolute; left: 0; top: 0; }
+
+    .word-art::before,
+    .word-art::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      pointer-events: none;
+    }
+
+    .word-art::before {
+      color: #7dff57;
+      animation: slice-a 2.6s infinite linear alternate-reverse;
+      clip-path: inset(0 0 58% 0);
+    }
+
+    .word-art::after {
+      color: #00a33a;
+      animation: slice-b 2.1s infinite linear alternate-reverse;
+      clip-path: inset(62% 0 0 0);
+    }
+
+    .word-art.hot::before { animation-duration: 0.18s; }
+    .word-art.hot::after { animation-duration: 0.14s; }
+
+    .stream { bottom: -4px; }
+    .stream path {
+      stroke: var(--green-deep);
+      stroke-dasharray: 8 18;
+      animation-duration: 0.85s;
+    }
+
+    .word-inu {
+      font-size: 1.08em;
+      letter-spacing: -0.07em;
+      color: #d01222;
+      text-shadow:
+        0 2px 0 #8d1020,
+        0 8px 18px rgba(208, 18, 34, 0.28);
+      animation: slam 0.55s cubic-bezier(.2, 1.3, .3, 1) 0.16s both;
+    }
+
+    .symbol {
+      margin-top: 18px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: var(--green-deep);
+    }
+
+    .lede {
+      margin: 16px auto 0;
+      max-width: 640px;
+      font-size: clamp(20px, 2.4vw, 28px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.2;
+    }
+
+    .sub { margin-top: 8px; font-size: 18px; color: var(--muted); }
+    .punch {
+      margin-top: 10px;
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      color: var(--green-deep);
+    }
+
+    .ca-row { margin-top: 22px; display: flex; justify-content: center; }
+
+    .ca {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      max-width: 100%;
+      background: #fff;
+      border: 1px solid rgba(6, 122, 34, 0.25);
+      border-radius: 999px;
+      padding: 8px 8px 8px 16px;
+      box-shadow: 0 10px 30px rgba(7, 70, 28, 0.06);
+    }
+
+    .ca-label {
+      color: var(--green-deep);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+    }
+
+    .ca code, .dock code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 14px;
+    }
+
+    .copy {
+      border: 0;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .copy.copied { background: var(--green); color: #04210c; }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .chart-card {
+      margin-top: 28px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(7, 70, 28, 0.06);
+    }
+
+    .chart-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px 0;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .bull {
+      color: #04210c;
+      background: var(--green);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+    }
+
+    #chart { width: 100%; height: 150px; display: block; }
+
+    .tape {
+      margin-top: 36px;
+      background: var(--ink);
+      color: var(--green);
+      overflow: hidden;
+      padding: 14px 0;
+    }
+
+    .tape-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+
+    .tape p {
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      font-size: 13px;
+      white-space: nowrap;
+      padding-right: 8px;
+    }
+
+    section[id] { scroll-margin-top: 90px; }
+    .block { padding: 88px 0; }
+    .block.tight { padding-top: 10px; }
+
+    .kicker {
+      color: var(--green-deep);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .about-top {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .seal {
+      width: 220px;
+      border-radius: 36px;
+      padding: 3px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(7, 70, 28, 0.12);
+    }
+
+    .seal::before {
+      content: "";
+      position: absolute;
+      inset: -80%;
+      background: conic-gradient(from 90deg, #00c805, #7eb6ff, #ff2d3a, #00c805);
+      animation: spin 6s linear infinite;
+    }
+
+    .seal img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      border-radius: 33px;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .about-lede {
+      margin-top: 14px;
+      font-size: 18px;
+      max-width: 560px;
+      color: var(--muted);
+    }
+
+    .facts {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .fact {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px 20px 18px;
+      box-shadow: 0 12px 30px rgba(7, 70, 28, 0.04);
+    }
+
+    .fact h3 {
+      font-size: 22px;
+      letter-spacing: -0.04em;
+      margin-bottom: 8px;
+    }
+
+    .fact p { color: var(--muted); }
+    .fact-super h3 { color: var(--blue); }
+    .fact-hot { background: #04210c; border-color: #04210c; }
+    .fact-hot h3, .fact-hot p { color: #fff; }
+    .fact-hot h3 { color: var(--green); }
+
+    .rail {
+      list-style: none;
+      margin-top: 32px;
+      display: grid;
+      gap: 0;
+    }
+
+    .rail li {
+      display: grid;
+      grid-template-columns: 84px 1fr;
+      gap: 8px;
+      padding-bottom: 26px;
+      position: relative;
+    }
+
+    .rail li::before {
+      content: "";
+      position: absolute;
+      left: 27px;
+      top: 56px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(var(--green), rgba(0, 200, 5, 0.05));
+    }
+
+    .rail li:last-child::before { display: none; }
+
+    .step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: var(--ink);
+      color: var(--green);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .rail h3 { font-size: 20px; letter-spacing: -0.03em; margin-bottom: 4px; }
+    .rail p { color: var(--muted); max-width: 640px; }
+
+    .buy-bar {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: #fff;
+      border-radius: 24px;
+      padding: 16px 16px 16px 22px;
+      border: 1px solid var(--line);
+    }
+
+    .buy-bar strong { font-size: 18px; letter-spacing: -0.03em; }
+    .buy-bar span { display: block; color: var(--muted); font-size: 14px; font-weight: 500; }
+
+    .rally {
+      background:
+        radial-gradient(700px 320px at 12% 0%, rgba(200, 255, 74, 0.2), transparent 55%),
+        linear-gradient(165deg, #083322, #04180f 70%);
+      color: #f4fff6;
+      padding: 72px 0 0;
+      border-radius: 36px 36px 0 0;
+    }
+
+    .rally .kicker { color: #c8ff4a; }
+
+    .rally-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+      gap: 36px;
+      align-items: center;
+    }
+
+    .rally h2 { max-width: 640px; }
+    .rally-lede { margin-top: 14px; color: #c9e6d2; max-width: 520px; font-size: 18px; }
+
+    .x-mega {
+      margin-top: 26px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #c8ff4a;
+      color: #04210c;
+      border-radius: 22px;
+      padding: 16px 16px 16px 18px;
+      box-shadow: 0 16px 40px rgba(200, 255, 74, 0.18);
+    }
+
+    .x-mega:hover { filter: brightness(1.04); }
+
+    .x-badge {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: #04210c;
+      color: #c8ff4a;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+    }
+
+    .x-copy { min-width: 0; display: grid; gap: 2px; }
+    .x-handle { font-size: clamp(28px, 3vw, 40px); font-weight: 800; letter-spacing: -0.05em; line-height: 1; }
+    .x-sub { color: #245016; font-weight: 600; }
+    .x-go {
+      margin-left: auto;
+      background: #04210c;
+      color: #c8ff4a;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .rally-side {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(200, 255, 74, 0.28);
+      border-radius: 28px;
+      padding: 18px;
+    }
+
+    .rally-logo {
+      width: 100%;
+      border-radius: 20px;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .dock {
+      margin-top: 12px;
+      background: #fff;
+      color: var(--ink);
+      border-radius: 16px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dock span {
+      color: var(--green-deep);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+    }
+
+    .dock code { flex: 1; min-width: 0; }
+    .dock .copy { margin-left: auto; }
+
+    .rally-buy {
+      margin-top: 12px;
+      display: flex;
+      width: 100%;
+    }
+
+    .chant {
+      margin-top: 36px;
+      border-top: 1px solid rgba(200, 255, 74, 0.25);
+      overflow: hidden;
+      padding: 16px 0;
+    }
+
+    .chant-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 22s linear infinite;
+    }
+
+    .chant p {
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      color: #c8ff4a;
+      white-space: nowrap;
+      padding-right: 10px;
+    }
+
+    footer {
+      background: #04180f;
+      color: #b7cfc0;
+      padding: 22px 0 28px;
+    }
+
+    .foot {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .foot-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .foot-brand img {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%) translateY(16px);
+      background: var(--ink);
+      color: #c8ff4a;
+      font-weight: 800;
+      padding: 12px 16px;
+      border-radius: 999px;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.2s ease;
+      z-index: 50;
+    }
+
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(0.75); opacity: 0.55; }
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @keyframes chrome {
+      from { background-position: 0% 50%; }
+      to { background-position: 200% 50%; }
+    }
+
+    @keyframes charge {
+      0%, 100% { filter: drop-shadow(0 8px 12px rgba(47, 125, 255, 0.22)); }
+      48% { filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8)) drop-shadow(0 8px 16px rgba(47, 125, 255, 0.45)); }
+    }
+
+    @keyframes arrive {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    @keyframes slam {
+      0% { opacity: 0; transform: scale(1.28); }
+      100% { opacity: 1; transform: none; }
+    }
+
+    @keyframes slice-a {
+      0% { transform: translate(0, 0); clip-path: inset(0 0 70% 0); }
+      50% { transform: translate(-3px, 1px); clip-path: inset(40% 0 28% 0); }
+      100% { transform: translate(3px, 0); clip-path: inset(10% 0 60% 0); }
+    }
+
+    @keyframes slice-b {
+      0% { transform: translate(0, 0); clip-path: inset(66% 0 0 0); }
+      50% { transform: translate(3px, -1px); clip-path: inset(28% 0 40% 0); }
+      100% { transform: translate(-2px, 0); clip-path: inset(74% 0 0 0); }
+    }
+
+    @keyframes travel { to { stroke-dashoffset: -100; } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @keyframes sheen {
+      0%, 58% { transform: translateX(-130%); }
+      100% { transform: translateX(130%); }
+    }
+
+    @keyframes drift {
+      from { transform: scale(1); }
+      to { transform: scale(1.035); }
+    }
+
+    @keyframes scan {
+      from { transform: translateY(-30vh); }
+      to { transform: translateY(110vh); }
+    }
+
+    @keyframes cta {
+      0% { box-shadow: 0 0 0 0 rgba(0, 200, 5, 0.45); }
+      100% { box-shadow: 0 0 0 14px rgba(0, 200, 5, 0); }
+    }
+
+    @media (max-width: 900px) {
+      .about-top,
+      .facts,
+      .rally-grid { grid-template-columns: 1fr; }
+
+      .buy-bar { flex-direction: column; align-items: stretch; }
+      .about-top { justify-items: start; }
+      .seal { width: min(220px, 70vw); }
+      .nav-toggle { display: grid; place-items: center; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 74px;
+        left: 0;
+        right: 0;
+        background: #f4fff6;
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px 20px 22px;
+        gap: 16px;
+      }
+
+      .nav-links.open { display: flex; }
+      .facts { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { width: min(var(--max), calc(100% - 28px)); }
+      .block { padding: 64px 0; }
+      h1 { font-size: 56px; }
+      .word-art { letter-spacing: 0.06em; }
+      .ca, .dock { width: 100%; }
+      .hero-actions .btn, .x-go, .rally-buy { width: 100%; }
+      .x-mega { flex-wrap: wrap; }
+      .x-go { margin-left: 0; text-align: center; }
+      .foot { flex-direction: column; align-items: flex-start; }
+      .brand-full { display: none; }
+      .brand-short { display: inline; }
+      .rail li { grid-template-columns: 64px 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .banner-frame img { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="scan" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top">
+        <img src="logo.png" alt="Super Artificial Inu logo">
+        <span class="brand-name"><span class="brand-full">Super Artificial Inu</span><span class="brand-short">Super AI Inu</span> <span class="brand-ticker">$SAI</span></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+      </button>
+      <nav class="nav-links" id="nav-links">
+        <a href="#about">About</a>
+        <a href="#how-to-buy">How to Buy</a>
+        <a href="#join">Join Us</a>
+        <a class="btn btn-buy" href="https://app.uniswap.org/swap?chain=robinhood&inputCurrency=NATIVE&outputCurrency=0xComingSoon" target="_blank" rel="noopener noreferrer">
+          <svg class="candle-icon" width="12" height="16" viewBox="0 0 12 16" aria-hidden="true">
+            <path d="M6 0v16" stroke="currentColor" stroke-width="1.6"/>
+            <rect x="2.2" y="3.2" width="7.6" height="9.2" rx="1.2" fill="currentColor"/>
+          </svg>
+          Buy $SAI
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="stage">
+      <div class="wrap">
+        <div class="banner-shell">
+          <div class="banner-frame">
+            <img src="banner.png" alt="Super Artificial Inu banner">
+            <span class="shine" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro">
+      <div class="wrap">
+        <div class="intro-copy">
+          <p class="eyebrow"><i></i> Robinhood Chain · Uniswap</p>
+          <h1 aria-label="Super Artificial Inu">
+            <span class="word word-super" aria-hidden="true">
+              <canvas class="bolts" id="bolts"></canvas>
+              <span class="super-text">Super</span>
+              <svg class="powerline" viewBox="0 0 100 8" preserveAspectRatio="none">
+                <path d="M0 4 H100" pathLength="100"></path>
+              </svg>
+            </span>
+            <span class="word word-art" id="artWord" data-text="ARTIFICIAL" aria-hidden="true">
+              <span class="art-sizer">Artificial</span>
+              <span class="art-live" id="artLive">Artificial</span>
+              <svg class="stream" viewBox="0 0 100 8" preserveAspectRatio="none">
+                <path d="M0 4 H100" pathLength="100"></path>
+              </svg>
+            </span>
+            <span class="word word-inu" aria-hidden="true">Inu</span>
+          </h1>
+          <p class="symbol">$SAI</p>
+          <p class="lede">AI IS PUMPING. INU IS SUPER.</p>
+          <p class="sub">$SAI just invaded Robinhood.</p>
+          <p class="punch">APE. SEND. REPEAT.</p>
+          <div class="ca-row">
+            <div class="ca">
+              <span class="ca-label">CA</span>
+              <code id="ca">0xComingsoon</code>
+              <button class="copy" type="button">Copy</button>
+            </div>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-buy btn-pulse" href="https://app.uniswap.org/swap?chain=robinhood&inputCurrency=NATIVE&outputCurrency=0xComingSoon" target="_blank" rel="noopener noreferrer">
+              <svg class="candle-icon" width="12" height="16" viewBox="0 0 12 16" aria-hidden="true">
+                <path d="M6 0v16" stroke="currentColor" stroke-width="1.6"/>
+                <rect x="2.2" y="3.2" width="7.6" height="9.2" rx="1.2" fill="currentColor"/>
+              </svg>
+              Buy $SAI
+            </a>
+            <a class="btn btn-ghost" href="#join">Join Us</a>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-top">
+            <strong>$SAI · AI IS PUMPING</strong>
+            <span class="bull">INVADED</span>
+          </div>
+          <canvas id="chart" aria-hidden="true"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <div class="tape" aria-hidden="true">
+      <div class="tape-track">
+        <p>AI IS PUMPING · INU IS SUPER · $SAI · JUST INVADED ROBINHOOD · APE · SEND · REPEAT · SUPER ARTIFICIAL INU · ROBINHOOD CHAIN · UNISWAP ·&nbsp;</p>
+        <p>AI IS PUMPING · INU IS SUPER · $SAI · JUST INVADED ROBINHOOD · APE · SEND · REPEAT · SUPER ARTIFICIAL INU · ROBINHOOD CHAIN · UNISWAP ·&nbsp;</p>
+      </div>
+    </div>
+
+    <section id="about" class="block">
+      <div class="wrap">
+        <div class="about-top">
+          <div class="seal">
+            <img src="logo.png" alt="Super Artificial Inu logo">
+          </div>
+          <div>
+            <p class="kicker">About</p>
+            <h2>Inu is super.</h2>
+            <p class="about-lede">AI IS PUMPING. INU IS SUPER. $SAI just invaded Robinhood. APE. SEND. REPEAT.</p>
+          </div>
+        </div>
+        <div class="facts">
+          <article class="fact fact-super">
+            <h3>Super</h3>
+            <p>Cape on. Visor lit. $SAI showed up like the meme already won and Wall Street is catching the replay.</p>
+          </article>
+          <article class="fact">
+            <h3>Artificial</h3>
+            <p>AI is pumping. The charts, the rockets, the green visors — $SAI is the artificial inu that took the trade.</p>
+          </article>
+          <article class="fact fact-hot">
+            <h3>Ape. Send. Repeat.</h3>
+            <p>$SAI just invaded Robinhood. Uniswap is the door. The loop is the whole thesis.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-to-buy" class="block tight">
+      <div class="wrap">
+        <p class="kicker">How to Buy</p>
+        <h2>Four steps. Then send.</h2>
+        <ol class="rail">
+          <li>
+            <span class="step-num">01</span>
+            <div>
+              <h3>Get a wallet</h3>
+              <p>Install an EVM wallet such as MetaMask or Rabby and keep your recovery phrase offline.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">02</span>
+            <div>
+              <h3>Open the swap</h3>
+              <p>Hit Buy $SAI. Uniswap opens on Robinhood Chain with the native token in and $SAI out.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">03</span>
+            <div>
+              <h3>Fund the wallet</h3>
+              <p>Hold the Robinhood Chain native token in that wallet so you can swap and pay the network fee.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">04</span>
+            <div>
+              <h3>Confirm the contract</h3>
+              <p>Check the token contract is 0xComingsoon, review the quote, then confirm the swap.</p>
+            </div>
+          </li>
+        </ol>
+        <div class="buy-bar">
+          <div>
+            <strong>Ready when you are.</strong>
+            <span>Robinhood Chain · Uniswap · output 0xComingSoon</span>
+          </div>
+          <a class="btn btn-buy" href="https://app.uniswap.org/swap?chain=robinhood&inputCurrency=NATIVE&outputCurrency=0xComingSoon" target="_blank" rel="noopener noreferrer">Buy $SAI on Uniswap</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="join" class="rally">
+      <div class="wrap rally-grid">
+        <div>
+          <p class="kicker">Join Us</p>
+          <h2>The invasion has a handle.</h2>
+          <p class="rally-lede">AI is pumping. Inu is super. Memes, updates, and the repeat loop all land in one place.</p>
+          <a class="x-mega" href="https://x.com/SuperAInu" target="_blank" rel="noopener noreferrer">
+            <span class="x-badge" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.727-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </span>
+            <span class="x-copy">
+              <span class="x-handle">@SuperAInu</span>
+              <span class="x-sub">Follow on X · x.com/SuperAInu</span>
+            </span>
+            <span class="x-go">Follow</span>
+          </a>
+        </div>
+        <aside class="rally-side">
+          <img class="rally-logo" src="logo.png" alt="Super Artificial Inu logo">
+          <div class="dock">
+            <span>CA</span>
+            <code>0xComingsoon</code>
+            <button class="copy" type="button">Copy</button>
+          </div>
+          <a class="btn btn-buy rally-buy" href="https://app.uniswap.org/swap?chain=robinhood&inputCurrency=NATIVE&outputCurrency=0xComingSoon" target="_blank" rel="noopener noreferrer">Buy $SAI</a>
+        </aside>
+      </div>
+      <div class="chant" aria-hidden="true">
+        <div class="chant-track">
+          <p>JOIN US · @SUPERAINU · APE · SEND · REPEAT · AI IS PUMPING · INU IS SUPER ·&nbsp;</p>
+          <p>JOIN US · @SUPERAINU · APE · SEND · REPEAT · AI IS PUMPING · INU IS SUPER ·&nbsp;</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div class="foot-brand">
+        <img src="logo.png" alt="">
+        <span>Super Artificial Inu · $SAI</span>
+      </div>
+      <p>CA 0xComingsoon · Robinhood Chain · Uniswap</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status">Contract copied</div>
+
+  <script>
+    const toggle = document.querySelector(".nav-toggle");
+    const links = document.querySelector("#nav-links");
+    toggle.addEventListener("click", () => {
+      const open = links.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    });
+    links.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        links.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open menu");
+      });
+    });
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const fx = document.querySelector("#fx");
+    const ctx = fx.getContext("2d");
+    const bolts = document.querySelector("#bolts");
+    const bctx = bolts.getContext("2d");
+    const artWord = document.querySelector("#artWord");
+    const artLive = document.querySelector("#artLive");
+    const artLabel = "ARTIFICIAL";
+    const glyphs = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%";
+    let nodes = [];
+    let drops = [];
+    let mouse = { x: -9999, y: -9999 };
+
+    function makeNode() {
+      return {
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: (Math.random() - 0.5) * 0.32,
+        vy: (Math.random() - 0.5) * 0.32
+      };
+    }
+
+    function makeDrop() {
+      return {
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        bw: 6 + Math.random() * 11,
+        body: 16 + Math.random() * 56,
+        wick: 8 + Math.random() * 18,
+        speed: 0.28 + Math.random() * 0.9,
+        alpha: 0.08 + Math.random() * 0.16
+      };
+    }
+
+    function fitFx() {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      fx.width = w * dpr;
+      fx.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      nodes = Array.from({ length: w < 700 ? 24 : 46 }, makeNode);
+      drops = Array.from({ length: w < 700 ? 12 : 22 }, makeDrop);
+    }
+
+    function drawBolt(x1, y1, x2, y2) {
+      const points = [[x1, y1]];
+      const segs = 7;
+      for (let i = 1; i <= segs; i++) {
+        const t = i / segs;
+        points.push([
+          x1 + (x2 - x1) * t + (i === segs ? 0 : (Math.random() - 0.5) * 36),
+          y1 + (y2 - y1) * t + (i === segs ? 0 : (Math.random() - 0.5) * 16)
+        ]);
+      }
+      bctx.beginPath();
+      bctx.moveTo(points[0][0], points[0][1]);
+      for (let i = 1; i < points.length; i++) bctx.lineTo(points[i][0], points[i][1]);
+      bctx.stroke();
+    }
+
+    function flashBolts() {
+      const rect = bolts.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = Math.max(1, rect.width);
+      const h = Math.max(1, rect.height);
+      bolts.width = w * dpr;
+      bolts.height = h * dpr;
+      bctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      bctx.clearRect(0, 0, w, h);
+      bctx.lineWidth = 1.6;
+      bctx.strokeStyle = "rgba(47, 125, 255, 0.9)";
+      bctx.shadowColor = "rgba(80, 160, 255, 0.9)";
+      bctx.shadowBlur = 12;
+      const bursts = 2 + Math.floor(Math.random() * 2);
+      for (let i = 0; i < bursts; i++) drawBolt(Math.random() * w, 8, Math.random() * w, h * 0.72);
+      bctx.shadowBlur = 0;
+    }
+
+    function scrambleArt() {
+      artWord.classList.add("hot");
+      let frame = 0;
+      const timer = setInterval(() => {
+        frame += 1;
+        if (frame > 7) {
+          artLive.textContent = "Artificial";
+          artWord.classList.remove("hot");
+          clearInterval(timer);
+          return;
+        }
+        let next = "";
+        for (let i = 0; i < artLabel.length; i++) {
+          next += frame > 4 && i < frame - 2 ? artLabel[i] : glyphs[Math.floor(Math.random() * glyphs.length)];
+        }
+        artLive.textContent = next;
+      }, 42);
+    }
+
+    function tickFx() {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      ctx.clearRect(0, 0, w, h);
+
+      for (const d of drops) {
+        if (!reduceMotion) d.y -= d.speed;
+        if (d.y + d.body < -30) {
+          d.y = h + 20;
+          d.x = Math.random() * w;
+        }
+        const cx = d.x + d.bw / 2;
+        ctx.save();
+        ctx.globalAlpha = d.alpha;
+        ctx.strokeStyle = "#067a22";
+        ctx.lineWidth = 1.3;
+        ctx.beginPath();
+        ctx.moveTo(cx, d.y - d.wick);
+        ctx.lineTo(cx, d.y + d.body + d.wick * 0.4);
+        ctx.stroke();
+        ctx.fillStyle = "#00c805";
+        ctx.fillRect(d.x, d.y, d.bw, d.body);
+        ctx.restore();
+      }
+
+      const link = w < 700 ? 110 : 146;
+      for (const n of nodes) {
+        if (!reduceMotion) {
+          n.x += n.vx;
+          n.y += n.vy;
+          const dx = mouse.x - n.x;
+          const dy = mouse.y - n.y;
+          if (Math.hypot(dx, dy) < 180) {
+            n.x -= dx * 0.004;
+            n.y -= dy * 0.004;
+          }
+        }
+        if (n.x < 0 || n.x > w) n.vx *= -1;
+        if (n.y < 0 || n.y > h) n.vy *= -1;
+      }
+
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i];
+          const b = nodes[j];
+          const dist = Math.hypot(a.x - b.x, a.y - b.y);
+          if (dist < link) {
+            ctx.strokeStyle = "rgba(6, 90, 30, " + (1 - dist / link) * 0.28 + ")";
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+        ctx.fillStyle = "rgba(6, 122, 34, 0.85)";
+        ctx.beginPath();
+        ctx.arc(nodes[i].x, nodes[i].y, 1.8, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      if (!reduceMotion) requestAnimationFrame(tickFx);
+    }
+
+    window.addEventListener("pointermove", (event) => {
+      mouse.x = event.clientX;
+      mouse.y = event.clientY;
+    });
+
+    const chart = document.querySelector("#chart");
+    const cctx = chart.getContext("2d");
+    let series = [];
+    let price = 42;
+
+    function pushCandle() {
+      const open = price;
+      const close = open + Math.random() * 3.2 + 0.45;
+      series.push({
+        o: open,
+        h: close + Math.random() * 1.5 + 0.2,
+        l: open - Math.random() * 0.65,
+        c: close
+      });
+      price = close;
+      if (series.length > 32) series.shift();
+      if (price > 150) {
+        series.forEach((bar) => { bar.o -= 48; bar.h -= 48; bar.l -= 48; bar.c -= 48; });
+        price -= 48;
+      }
+    }
+
+    function drawChart() {
+      const rect = chart.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = Math.max(1, rect.width);
+      const h = Math.max(1, rect.height);
+      chart.width = w * dpr;
+      chart.height = h * dpr;
+      cctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      cctx.clearRect(0, 0, w, h);
+      cctx.strokeStyle = "rgba(6, 122, 34, 0.12)";
+      for (let i = 1; i < 4; i++) {
+        const y = (h / 4) * i;
+        cctx.beginPath();
+        cctx.moveTo(0, y);
+        cctx.lineTo(w, y);
+        cctx.stroke();
+      }
+      const n = series.length;
+      const slot = w / n;
+      const bottom = h - 14;
+      const rise = Math.max(28, h - 56);
+      series.forEach((bar, i) => {
+        const bodyH = 16 + Math.min(4, Math.max(0.4, bar.c - bar.o)) * 7;
+        const top = bottom - (i / Math.max(1, n - 1)) * rise - bodyH;
+        const bodyW = Math.max(5, slot * 0.55);
+        const x = i * slot + (slot - bodyW) / 2;
+        const cx = x + bodyW / 2;
+        cctx.strokeStyle = "#067a22";
+        cctx.lineWidth = 1.4;
+        cctx.beginPath();
+        cctx.moveTo(cx, top - 8);
+        cctx.lineTo(cx, top + bodyH + 6);
+        cctx.stroke();
+        cctx.fillStyle = "#00c805";
+        cctx.fillRect(x, top, bodyW, bodyH);
+      });
+    }
+
+    for (let i = 0; i < 32; i++) pushCandle();
+    fitFx();
+    drawChart();
+    tickFx();
+    if (!reduceMotion) {
+      setTimeout(scrambleArt, 700);
+      setInterval(() => { if (!document.hidden) scrambleArt(); }, 4600);
+      setInterval(() => { if (!document.hidden) flashBolts(); }, 900);
+      setTimeout(flashBolts, 280);
+      window.addEventListener("resize", () => { fitFx(); drawChart(); });
+      setInterval(() => {
+        if (document.hidden) return;
+        pushCandle();
+        drawChart();
+      }, 480);
+    }
+
+    document.querySelectorAll(".copy").forEach((copyBtn) => {
+      copyBtn.addEventListener("click", async () => {
+        const ca = document.querySelector("#ca").textContent.trim();
+        try {
+          await navigator.clipboard.writeText(ca);
+        } catch (err) {
+          const area = document.createElement("textarea");
+          area.value = ca;
+          document.body.appendChild(area);
+          area.select();
+          document.execCommand("copy");
+          area.remove();
+        }
+        copyBtn.textContent = "Copied";
+        copyBtn.classList.add("copied");
+        document.querySelector("#toast").classList.add("show");
+        setTimeout(() => {
+          copyBtn.textContent = "Copy";
+          copyBtn.classList.remove("copied");
+          document.querySelector("#toast").classList.remove("show");
+        }, 1600);
+      });
+    });
+  </script>
+</body>
+</html>
